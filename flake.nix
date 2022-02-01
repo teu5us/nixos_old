@@ -21,6 +21,9 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+  inputs.kmonad.url = "github:kmonad/kmonad?dir=nix";
+  inputs.kmonad.inputs.nixpkgs.follows = "nixpkgs";
+
   outputs = inputs: {
 
     nixosConfigurations.nix450s = inputs.nixpkgs.lib.nixosSystem {
@@ -39,7 +42,10 @@
           nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
           home-manager.useGlobalPkgs = true;
+          home-manager.useUserPkgs = true;
         })
+
+        inputs.kmonad.nixosModule
 
         ./configuration.nix
       ];

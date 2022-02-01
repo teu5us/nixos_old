@@ -160,47 +160,41 @@
         # Enable startx
         startx.enable = false;
         gdm.enable = true;
-        defaultSession = "Gnome on Xorg";
+        defaultSession = "gnome-xorg";
       };
       desktopManager = {
         gnome.enable = true;
       };
       videoDrivers = [ "modesetting" ];
       useGlamor = true;
-      synaptics = {
+      libinput = {
         enable = true;
-        palmDetect = true;
-        horizontalScroll = true;
-        tapButtons = true;
+        touchpad = {
+          disableWhileTyping = true;
+        };
       };
-      # libinput = {
-      #   enable = true;
-      #   touchpad = {
-      #     disableWhileTyping = true;
-      #   };
-      # };
     };
 
-    gnome = {
-      sushi.enable = true;
-      gnome-keyring.enable = true;
-      games.enable = false;
-      tracker.enable = true;
-      tracker-miners.enable = true;
-      core-shell.enable = true;
-      core-utilities.enable = true;
-      core-os-services.enable = true;
-      gnome-documents.enable = false;
-      glib-networking.enable = true;
-      gnome-user-share.enable = true;
-      chrome-gnome-shell.enable = false;
-      gnome-remote-desktop.enable = true;
-      gnome-online-miners.enable = false;
-      gnome-initial-setup.enable = true;
-      gnome-settings-daemon.enable = true;
-      gnome-online-accounts.enable = false;
-      evolution-data-server.enable = false;
-    };
+    # gnome = {
+    #   sushi.enable = true;
+    #   gnome-keyring.enable = true;
+    #   games.enable = false;
+    #   tracker.enable = true;
+    #   tracker-miners.enable = true;
+    #   core-shell.enable = true;
+    #   core-utilities.enable = true;
+    #   core-os-services.enable = true;
+    #   gnome-documents.enable = false;
+    #   glib-networking.enable = true;
+    #   gnome-user-share.enable = true;
+    #   chrome-gnome-shell.enable = false;
+    #   gnome-remote-desktop.enable = true;
+    #   gnome-online-miners.enable = false;
+    #   gnome-initial-setup.enable = true;
+    #   gnome-settings-daemon.enable = true;
+    #   gnome-online-accounts.enable = false;
+    #   evolution-data-server.enable = false;
+    # };
   };
 
   fonts = {
@@ -233,6 +227,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    xorg.setxkbmap xorg.xmodmap xorg.xkbcomp xorg.xset xautomation xdotool xorg.xdpyinfo xclip xorg.xev xorg.xhost xorg.xwininfo
+    xorg.setxkbmap xorg.xmodmap xorg.xkbcomp xorg.xset xautomation xdotool xorg.xdpyinfo xclip xorg.xev xorg.xhost xorg.xwininfo imwheel
   ];
 }

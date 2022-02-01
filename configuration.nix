@@ -1,13 +1,5 @@
 { config, pkgs, options, lib, ... }:
 
-let
-  kmonad = pkgs.fetchFromGitHub {
-    repo = "kmonad";
-    owner = "kmonad";
-    rev = "0.4.1";
-    sha256 = "1rp880zxvrznx0y1k464wjrds441dpsz94syhrkaw5dnmxf74yjd";
-  };
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -21,7 +13,7 @@ in
     ./gui.nix
     ./db.nix
     ./nix450s/kernel.nix
-    (/. + "${kmonad}/nix/nix-module.nix")
+    ./hm/paul/default.nix
   ];
 
   networking.hostName = "nix450s"; # Define your hostname.

@@ -13,7 +13,7 @@
         };
         swtpm = {
           enable = true;
-          package = pkgs.swtpm-secureBoot;
+          package = pkgs.swtpm-tpm2;
         };
         verbatimConfig = ''
           user = "paul"

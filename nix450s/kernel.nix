@@ -9,7 +9,7 @@
       "pcie_aspm=force"
       # "acpi_osi="
       "acpi_osi=!"
-      "acpi_osi='Windows 2009'"
+      "acpi_osi=\"Windows 2009\""
       "usbcore.autosuspend=0"
       "intel_iommu=on"
       "iommu=pt"

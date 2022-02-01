@@ -1,15 +1,22 @@
 { config, pkgs, options, lib, ... }:
 
 let
-  aliases = {
-    ls = "${pkgs.exa}/bin/exa";
+  aliases = let
+    exa = "${pkgs.exa}/bin/exa --group-directories-first";
+  in {
+    ls = "${exa}";
+    ll = "${exa} -l";
+    la = "${exa} -a";
+    lla = "${exa} -al";
     v = "nvim";
+    mkd = "mkdir -pv";
+    diff = "diff --color=auto";
+    grep = "grep --color=auto";
   };
 in
 {
   programs = {
     bash = {
-      enable = true;
       enableCompletion = true;
       undistractMe.enable = true;
       shellAliases = aliases;
@@ -23,7 +30,6 @@ in
       syntaxHighlighting.enable = true;
       autosuggestions = {
         enable = true;
-        async= true;
       };
     };
   };

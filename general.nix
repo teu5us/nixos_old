@@ -102,15 +102,34 @@
 
   programs = {
     mtr.enable = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+    };
+
+    chromium = {
+      enable = true;
+      extensions = [
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+        "hfjbmagddngcpeloejdejnfgbamkjaeg" # vimium c
+        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # darkreader
+        "chphlpgkkbolifaimnlloiipkdnihall" # onetab
+        "lhaoghhllmiaaagaffababmkdllgfcmc" # atomic-chrome
+        "egpjdkipkomnmjhjmdamaniclmdlobbo" # firenvim
+        "djflhoibgkdhkhhcedjiklpkjnoahfmg" # user-agent switcher
+        "jinjaccalgkegednnccohejagnlnfdag" # violentmonkey
+        "oboonakemofpalcgghocfoadofidjkkk" # keepassxc-browser
+        "fhcgjolkccmbidfldomjliifgaodjagh" # cookieautodelete
+        "gphhapmejobijbbhgpjhcjognlahblep" # gnome extensions
+      ];
     };
   };
 
   environment.systemPackages = with pkgs; [
     file
     findutils
+    fd ripgrep
     which
     nix-prefetch-scripts
     lm_sensors
@@ -126,7 +145,7 @@
     gitAndTools.gitFull
     vim
     (hunspellWithDicts (with hunspellDicts; [ en_GB-large en_US-large ru_RU ]))
-    paprefs pavucontrol
+    paprefs pavucontrol pulsemixer
     xtrlock-pam
     compton
     chromium brave
