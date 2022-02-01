@@ -1,0 +1,151 @@
+;; -*- eval: (whitespace-mode) -*-
+
+#| --------------------------------------------------------------------------
+
+                           Lenovo ThinkPad T450s kbd
+
+(deflayer name
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _                 _                _    _    _    _    _    _
+                                                              _    _    _
+)
+
+  -------------------------------------------------------------------------- |#
+
+#| --------------------------------------------------------------------------
+                           Setup system configuration
+   -------------------------------------------------------------------------- |#
+
+;; Basic system config
+(defcfg
+  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  ;; output (uinput-sink "KMonad T450s kbd"
+  ;;                     "/run/current-system/sw/bin/sleep 1 && /run/current-system/sw/bin/setxkbmap -option compose:ralt")
+  output (uinput-sink "KMonad T450s kbd"
+                      "/run/current-system/sw/bin/sleep 1")
+  allow-cmd true
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  home   end  ins  del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt ssrq rctl      pgup  up    pgdn
+                                                              left  down  rght
+)
+
+;; This one requires some work because everything mixes up
+;; I need this to support Xorg russian layout
+;; Make a dvorak-based X russian layout?
+;;
+;; For now just substitute dv with qw and call xkb-switch
+;;
+;; (defsrc
+;;   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  home   end  ins  del
+;;   grv  1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+;;   tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
+;;   caps a    o    e    u    i    d    h    t    n    s    -    ret
+;;   lsft ;    q    j    k    x    b    m    w    v    z    rsft
+;;   lctl lmet lalt           spc            ralt ssrq rctl      pgup  up    pgdn
+;;                                                               left  down  rght
+;; )
+
+#| --------------------------------------------------------------------------
+                                     Layers
+   -------------------------------------------------------------------------- |#
+
+(deflayer qwerty
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  home   end  ins  del
+  @gfn 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tn  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @sup @sed s    d    f    g    h    j    k    l    ;    '    @rn
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  @eal @sup @eal           @cpc           ralt @sup rctl      pgup  up    pgdn
+                                                              left  down  rght
+)
+
+(deflayer dvorak
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  home   end  ins  del
+  @gfn 1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+  @tn  '    ,    .    p    y    f    g    c    r    l    /    =    \
+  @sup @sed o    e    u    i    d    h    t    n    s    -    @rn
+  lsft ;    q    j    k    x    b    m    w    v    z    rsft
+  @eal @sup @eal           @cpc           ralt @sup rctl      pgup  up    pgdn
+                                                              left  down  rght
+)
+
+(deflayer moddh
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  home   end  ins  del
+  @gfn 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tn  q    w    f    p    b    j    l    u    y    ;    [    ]    \
+  @sup @sed r    s    t    g    m    n    e    i    o    '    @rn
+  lsft x    c    d    v    z    k    h    ,    .    /    rsft
+  @eal @sup @eal           @cpc           ralt @sup rctl      pgup  up    pgdn
+                                                              left  down  rght
+)
+
+(deflayer numbers
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    "    @    &    [    ]    %    7    8    9    *    /    _    _
+  @ed  ^    =    ~    \(   \)   .    4    5    6    -    bspc ret
+  lsft $    \\   #    {    }    0    1    2    3    +    rsft
+  @eal _    @ecl              spc              @ecl _    @eal _    _    _
+                                                              _    _    _
+)
+
+(deflayer editing
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    @ns  @ru  @end @enq @enc _    _
+  _    _    lsft lctl lalt _    bspc left down up   rght _    _
+  _    _    _    _    _    _    del  pgup pgdn _    _    _
+  _    _    _                 ret              _    _    _    _    _    _
+                                                              _    _    _
+)
+
+(deflayer media
+  _    mute vold volu _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _                 _                _    _    _    _    _    _
+                                                              _    _    _
+)
+#| --------------------------------------------------------------------------
+                                    Aliases
+   -------------------------------------------------------------------------- |#
+
+(defalias
+  dv  (layer-switch dvorak)
+  qw  (layer-switch qwerty)
+  dh  (layer-switch moddh)
+  ed  (layer-toggle editing)
+  gfn (tap-hold 200 ` (layer-toggle media))
+  end  #((cmd-button "xkb-switch -s 'us'") @dv)
+  enq  #((cmd-button "xkb-switch -s 'us'") @qw)
+  ru  #((cmd-button "xkb-switch -s 'ru'") @qw)
+  enc  #((cmd-button "xkb-switch -s 'us'") @dh)
+  sup (tap-hold 150 esc lmet)
+  ns (layer-switch numbers)
+  nt (layer-toggle numbers)
+  sed (tap-hold 200 a @ed)
+  rn (tap-hold 150 ret @nt)
+  tn (tap-hold 150 tab @nt)
+  cpc (tap-hold 150 spc lctl)
+  sdl (tap-hold 150 ; lsft)
+  sdr (tap-hold 150 z rsft)
+  sql (tap-hold 150 z lsft)
+  sqr (tap-hold 150 / rsft)
+  esf (tap-next (around-next lsft) lsft)
+  ecl (tap-next (around-next lctl) lctl)
+  eal (tap-next (around-next lalt) lalt)
+  ale (tap-next esc lalt)
+)
