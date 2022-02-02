@@ -2,7 +2,7 @@
 
 {
   networking = {
-    useNetworkd = true;
+    useNetworkd = false;
     wireless = {
       enable = true; # Enables wireless support via wpa_supplicant.
       interfaces = [ "wlp3s0" ];
