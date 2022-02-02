@@ -11,7 +11,7 @@
         programs = {
           emacs = {
             enable = true;
-            package = pkgs.emacs.override { imagemagick = pkgs.imagemagick };
+            package = pkgs.emacs.override { imagemagick = pkgs.imagemagick; };
             extraPackages = (epkgs: with epkgs; [
               pdf-tools
               vterm
@@ -44,7 +44,7 @@
                   y = 1;
                 };
                 dynamic_padding = true;
-                decorations = "full";
+                decorations = "none";
                 dynamic_title = true;
               };
               scrolling = {
@@ -52,7 +52,7 @@
                 multiplier = 5;
               };
               font = { size = 12; };
-              background_opacity = 1;
+              opacity = 0.9;
               key_bindings = [
                 {
                   key = "J";
@@ -94,6 +94,7 @@
             dotDir = ".config/zsh";
             enableCompletion = true;
             enableAutosuggestions = true;
+            enableSyntaxHighlighting = true;
             defaultKeymap = "viins";
             shellAliases = aliases;
             initExtraBeforeCompInit = ''
@@ -106,29 +107,14 @@
                 name = "sfz";
                 src = builtins.fetchGit {
                   url = "https://github.com/teu5us/sfz-prompt.zsh";
+                  rev = "1419b468675c367fa44cd14e1bf86997f2ada5fc";
                 };
               }
               {
                 name = "fzf-tab";
-                src =
-                  builtins.fetchGit { url = "https://github.com/Aloxaf/fzf-tab"; };
-              }
-              {
-                name = "zsh-autosuggestions";
                 src = builtins.fetchGit {
-                  url = "https://github.com/zsh-users/zsh-autosuggestions";
-                };
-              }
-              {
-                name = "fast-syntax-highlighting";
-                src = builtins.fetchGit {
-                  url = "https://github.com/desyncr/fast-syntax-highlighting";
-                };
-              }
-              {
-                name = "zsh-pandoc-completion";
-                src = builtins.fetchGit {
-                  url = "https://github.com/srijanshetty/zsh-pandoc-completion";
+                  url = "https://github.com/Aloxaf/fzf-tab";
+                  rev = "c5c6e1d82910fb24072a10855c03e31ea2c51563";
                 };
               }
             ];
@@ -172,12 +158,16 @@
                 # echo -en "\e]2;$@\a"
                 print -Pn "\e]0;%~\a"
               }
-
-              [ -n "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
             '';
           };
 
           autojump.enable = true;
+
+          zoxide = {
+            enable = true;
+            enableBashIntegration = true;
+            enableZshIntegration = true;
+          };
 
           fzf = {
             enable = true;
@@ -270,22 +260,35 @@
                              };
         };
 
-        qt = {
-          enable = true;
-          platformTheme = "gtk";
-        };
+        # qt = {
+        #   enable = true;
+        #   style = "adwaita-dark";
+        #   platformTheme = "gnome";
+        # };
 
         home = rec {
           username = "paul";
           homeDirectory = "/home/${username}";
 
           packages = with pkgs; [
-            numlockx
-            xcalib
-            pulsemixer
-            tmux
-            tmate
+            anydesk
+            discord
+            freerdp
+            gnome.gnome-tweaks
+            keepassxc
             libreoffice-fresh
+            numlockx
+            openvpn
+            pulsemixer
+            remmina
+            skypeforlinux
+            syncthing
+            tdesktop
+            tmate
+            tmux
+            xcalib
+            yandex-disk
+            zoom-us
           ];
 
           file = {

@@ -229,4 +229,10 @@
   environment.systemPackages = with pkgs; [
     xorg.setxkbmap xorg.xmodmap xorg.xkbcomp xorg.xset xautomation xdotool xorg.xdpyinfo xclip xorg.xev xorg.xhost xorg.xwininfo imwheel
   ];
+
+  qt5 = {
+    enable = true;
+    style = "adwaita-dark";
+    platformTheme = "gnome";
+  };
 }

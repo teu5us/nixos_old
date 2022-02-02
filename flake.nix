@@ -42,7 +42,7 @@
           nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
           home-manager.useGlobalPkgs = true;
-          home-manager.useUserPkgs = true;
+          home-manager.useUserPackages = true;
         })
 
         inputs.kmonad.nixosModule

@@ -56,8 +56,8 @@
 
   nix = {
     trustedUsers = [ "root" ];
-    nixPath = options.nix.nixPath.default
-      ++ [ "nixpkgs-overlays=/etc/nixos/overlays-compat/" ];
+    # nixPath = options.nix.nixPath.default
+    #   ++ [ "nixpkgs-overlays=/etc/nixos/overlays-compat/" ];
   };
 
   nixpkgs.config = {
