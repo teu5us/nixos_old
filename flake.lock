@@ -22,11 +22,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1643579427,
-        "narHash": "sha256-tV4M4+Aqd/3ZjEz1Q07j89KIlkt1oFH34RzpBkUeO/0=",
+        "lastModified": 1643837728,
+        "narHash": "sha256-iW/5eMRQmzdctv2dAUlIaZnVWwcmaznNajS+ft1MXHg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a52aed72c84a2a10102a92397339fa01fc0fe9cf",
+        "rev": "9d369c75ce2fdeb296ad42bcdc8c1a523c494550",
         "type": "github"
       },
       "original": {
@@ -59,6 +59,26 @@
         "type": "github"
       }
     },
+    "nix-store-emacs-packages": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1643889532,
+        "narHash": "sha256-a7Y0GrFAkRBDaptoZbftjNI97YuJHl6teJ9L0samRiQ=",
+        "owner": "teu5us",
+        "repo": "nix-store-emacs-packages",
+        "rev": "0ffbc09ae5069606529e2c876c8bfd63699cfb5e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "teu5us",
+        "repo": "nix-store-emacs-packages",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1643503720,
@@ -79,6 +99,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "kmonad": "kmonad",
+        "nix-store-emacs-packages": "nix-store-emacs-packages",
         "nixpkgs": "nixpkgs"
       }
     }
