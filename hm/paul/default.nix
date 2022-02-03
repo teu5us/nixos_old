@@ -258,8 +258,8 @@
             name = "Pop";
           };
           gtk2.extraConfig = ''
-      gtk-key-theme-name="Emacs"
-    '';
+            gtk-key-theme-name="Emacs"
+          '';
           gtk3.extraConfig = { gtk-key-theme-name = "Emacs";
                                gtk-primary-button-warps-slider = "false";
                              };
