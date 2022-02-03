@@ -24,7 +24,7 @@
         group = "users";
         home = "/home/paul";
         uid = 1000;
-        password = "loveyou";
+        hashedPassword = "$6$6TbBDrWaFNFUxUu2$vbwiaynzRobGBSlqvmuGolQmOA7l2HeirACJCBIalVTLdspFFKo7Ho/VH/81jKrQqNoLM7/.wr0DNfjlHRafH0";
         shell = pkgs.zsh;
       };
     };
