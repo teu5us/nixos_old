@@ -66,6 +66,12 @@
     joypixels.acceptLicense = true;
   };
 
+  nixpkgs.overlays = [
+    (self: super: {
+      nix-direnv = super.nix-direnv-flakes;
+    })
+  ];
+
   documentation = {
     enable = true;
     dev.enable = true;
