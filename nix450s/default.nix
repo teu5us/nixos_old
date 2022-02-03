@@ -12,8 +12,8 @@
     ./virtualization.nix
     ./gui.nix
     ./db.nix
-    ./nix450s/kernel.nix
-    ./hm/paul/default.nix
+    ./kernel.nix
+    ../hm/paul/default.nix
   ];
 
   networking.hostName = "nix450s"; # Define your hostname.

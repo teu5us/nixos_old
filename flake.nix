@@ -52,7 +52,7 @@
 
         inputs.nix-store-emacs-packages.nixosModule
 
-        ./configuration.nix
+        ./nix450s
       ];
     };
 
