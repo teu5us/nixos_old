@@ -40,7 +40,7 @@
 
   services.kmonad = {
     enable = true;
-    configfiles = [ ./nix450s/kmonad-keymap-emacs.kbd ];
+    configfiles = [ ./kmonad-keymap-emacs.kbd ];
   };
 
   system.stateVersion = "21.11";
