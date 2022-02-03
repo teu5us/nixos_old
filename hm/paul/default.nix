@@ -3,7 +3,9 @@
 {
   home-manager.users.paul = { pkgs, ... }:
     let
-      aliases = {};
+      aliases = {
+        e = "emacsclient -a ''";
+      };
     in
       {
         nixpkgs.config.allowUnfree = true;
