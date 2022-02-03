@@ -3,26 +3,8 @@
 {
   networking = {
     useNetworkd = false;
-    wireless = {
-      enable = true; # Enables wireless support via wpa_supplicant.
-      interfaces = [ "wlp3s0" ];
-      networks = {
-        "M-lan_5G" = { psk = "Vfhbyf693"; };
-        # "Kreuzmann" = { psk = "Make1Step"; };
-        "Kreuzmann_5G" = { psk = "Make1Step"; };
-        "dd-wrt" = { psk = "@)(&nVpYl9"; };
-        "AndroidAP_7846" = { psk = "auDe0poi"; };
-        "Elephant" = { psk = "q6bb7xln"; };
-        "UNIVER-GUEST" = { psk = "1q2w3e4r"; };
-        "3-10 Zyxel-5g" = { psk = "pass4wifi"; };
-      };
-      extraConfig = ''
-        country=RU
-      '';
-    };
     networkmanager = {
       enable = true; # Enable networkmanager
-      unmanaged = [ "wlp3s0" ];
       extraConfig = ''
         [connection]
         ethernet.wake-on-lan = ignore
