@@ -25,4 +25,8 @@
     # Docker
     docker.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    qemu spice-gtk virglrenderer virtviewer virt-manager
+  ];
 }

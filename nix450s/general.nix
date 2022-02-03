@@ -143,11 +143,9 @@
     zip unzip
     poppler_utils poppler_data
     libnotify
-    ncdu
     bat
     aria2 curl wget
     ffmpeg
-    zoxide
     htop
     gitAndTools.gitFull
     vim
@@ -158,7 +156,5 @@
     chromium brave
     wmctrl
     dragon-drop
-    redshift
-    qemu spice-gtk virglrenderer virtviewer virt-manager
   ];
 }
