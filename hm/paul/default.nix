@@ -284,6 +284,7 @@
             libreoffice-fresh
             numlockx
             openvpn
+            pandoc
             pulsemixer
             remmina
             skypeforlinux
