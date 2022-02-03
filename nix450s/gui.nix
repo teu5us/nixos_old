@@ -174,27 +174,6 @@
         };
       };
     };
-
-    # gnome = {
-    #   sushi.enable = true;
-    #   gnome-keyring.enable = true;
-    #   games.enable = false;
-    #   tracker.enable = true;
-    #   tracker-miners.enable = true;
-    #   core-shell.enable = true;
-    #   core-utilities.enable = true;
-    #   core-os-services.enable = true;
-    #   gnome-documents.enable = false;
-    #   glib-networking.enable = true;
-    #   gnome-user-share.enable = true;
-    #   chrome-gnome-shell.enable = false;
-    #   gnome-remote-desktop.enable = true;
-    #   gnome-online-miners.enable = false;
-    #   gnome-initial-setup.enable = true;
-    #   gnome-settings-daemon.enable = true;
-    #   gnome-online-accounts.enable = false;
-    #   evolution-data-server.enable = false;
-    # };
   };
 
   fonts = {
@@ -232,7 +211,7 @@
 
   qt5 = {
     enable = true;
-    style = "adwaita-dark";
+    style = "adwaita";
     platformTheme = "gnome";
   };
 }

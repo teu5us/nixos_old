@@ -77,15 +77,14 @@
     dev.enable = true;
     man = {
       enable = true;
-      generateCaches = true;
+      generateCaches = false;
     };
     doc.enable = true;
     info.enable = true;
     nixos = {
-      enable = true;
+      enable = false;
       includeAllModules = true;
     };
-
   };
 
   services.openssh = {

@@ -49,7 +49,7 @@
                   y = 1;
                 };
                 dynamic_padding = true;
-                decorations = "none";
+                decorations = "full";
                 dynamic_title = true;
               };
               scrolling = {
