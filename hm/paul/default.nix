@@ -11,12 +11,15 @@
         programs = {
           emacs = {
             enable = true;
-            package = pkgs.emacs.override { imagemagick = pkgs.imagemagick; };
-            extraPackages = (epkgs: with epkgs; [
-              pdf-tools
-              vterm
-              sly
-            ]);
+            package = pkgs.emacs.override { imagemagick = pkgs.imagemagickBig; };
+            extraPackages = (epkgs:
+              let requiredPackages =
+                    map (p: epkgs.${p})
+                      (builtins.filter
+                        (p: builtins.hasAttr p epkgs && lib.isDerivation epkgs.${p})
+                        (import ./packages.nix));
+              in epkgs.withStraightOverrides requiredPackages
+            );
           };
 
           git = {

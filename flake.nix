@@ -24,6 +24,9 @@
   inputs.kmonad.url = "github:kmonad/kmonad?dir=nix";
   inputs.kmonad.inputs.nixpkgs.follows = "nixpkgs";
 
+  inputs.nix-store-emacs-packages.url = "github:teu5us/nix-store-emacs-packages";
+  inputs.nix-store-emacs-packages.inputs.nixpkgs.follows = "nixpkgs";
+
   outputs = inputs: {
 
     nixosConfigurations.nix450s = inputs.nixpkgs.lib.nixosSystem {
@@ -46,6 +49,8 @@
         })
 
         inputs.kmonad.nixosModule
+
+        inputs.nix-store-emacs-packages.nixosModule
 
         ./configuration.nix
       ];
