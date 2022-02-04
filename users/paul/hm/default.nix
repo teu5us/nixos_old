@@ -59,7 +59,7 @@ rec {
           history = 10000;
           multiplier = 5;
         };
-        font = { size = 8; };
+        font = { size = 12; };
         opacity = 0.9;
         key_bindings = [
           {
