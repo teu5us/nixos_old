@@ -27,63 +27,39 @@
   inputs.nix-store-emacs-packages.url = "github:teu5us/nix-store-emacs-packages";
   inputs.nix-store-emacs-packages.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs: {
+  outputs = inputs: rec {
 
-    nixosConfigurations.nix450s = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      # Things in this set are passed to modules and accessible
-      # in the top-level arguments (e.g. `{ pkgs, lib, inputs, ... }:`).
-      specialArgs = {
-        inherit inputs;
-      };
-      modules = [
-        inputs.home-manager.nixosModules.home-manager
+      baseSystem = system: modules: (inputs.nixpkgs.lib.nixosSystem {
+        system = system;
+        # Things in this set are passed to modules and accessible
+        # in the top-level arguments (e.g. `{ pkgs, lib, inputs, ... }:`).
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          inputs.home-manager.nixosModules.home-manager
 
-        ({ pkgs, ... }: {
-          nix.extraOptions = "experimental-features = nix-command flakes";
-          nix.package = pkgs.nixFlakes;
-          nix.registry.nixpkgs.flake = inputs.nixpkgs;
+          ({ pkgs, ... }: {
+            nix.extraOptions = "experimental-features = nix-command flakes";
+            nix.package = pkgs.nixFlakes;
+            nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-        })
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          })
 
-        inputs.kmonad.nixosModule
+          inputs.kmonad.nixosModule
 
-        inputs.nix-store-emacs-packages.nixosModule
+          inputs.nix-store-emacs-packages.nixosModule
+        ] ++ modules;
+      });
 
-        ./machines/nix450s
-        ./modules/gui/gnome.nix
-      ];
+
+      nixosConfigurations.nix450s = baseSystem "x86_64-linux"
+        [ ./machines/nix450s ./modules/gui/gnome.nix ];
+
+      nixosConfigurations.nix450s-startx = baseSystem "x86_64-linux"
+        [ ./machines/nix450s ./modules/gui/startx.nix ];
+
     };
-
-    nixosConfigurations.nix450s-startx = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      # Things in this set are passed to modules and accessible
-      # in the top-level arguments (e.g. `{ pkgs, lib, inputs, ... }:`).
-      specialArgs = {
-        inherit inputs;
-      };
-      modules = [
-        inputs.home-manager.nixosModules.home-manager
-
-        ({ pkgs, ... }: {
-          nix.extraOptions = "experimental-features = nix-command flakes";
-          nix.package = pkgs.nixFlakes;
-          nix.registry.nixpkgs.flake = inputs.nixpkgs;
-
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-        })
-
-        inputs.kmonad.nixosModule
-
-        inputs.nix-store-emacs-packages.nixosModule
-
-        ./machines/nix450s
-        ./modules/gui/xmonad.nix
-      ];
-    };
-
-  };
 }
