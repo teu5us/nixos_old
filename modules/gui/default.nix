@@ -156,23 +156,6 @@
           Option "DragLockButtons" "10"
         ''
       ];
-      displayManager = {
-        # Enable startx
-        startx.enable = false;
-        gdm.enable = true;
-        defaultSession = "gnome-xorg";
-      };
-      desktopManager = {
-        gnome.enable = true;
-      };
-      videoDrivers = [ "modesetting" ];
-      useGlamor = true;
-      libinput = {
-        enable = true;
-        touchpad = {
-          disableWhileTyping = true;
-        };
-      };
     };
   };
 
@@ -181,7 +164,7 @@
       opensans-ttf
       dejavu_fonts
       corefonts
-      nerdfonts
+      (nerdfonts.override { fonts = [ "FiraCode" "Iosevka" ]; })
       unifont
       joypixels
       roboto-mono
@@ -205,8 +188,42 @@
     };
   };
 
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+      "hfjbmagddngcpeloejdejnfgbamkjaeg" # vimium c
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # darkreader
+      "chphlpgkkbolifaimnlloiipkdnihall" # onetab
+      "lhaoghhllmiaaagaffababmkdllgfcmc" # atomic-chrome
+      "djflhoibgkdhkhhcedjiklpkjnoahfmg" # user-agent switcher
+      "jinjaccalgkegednnccohejagnlnfdag" # violentmonkey
+      "oboonakemofpalcgghocfoadofidjkkk" # keepassxc-browser
+      "fhcgjolkccmbidfldomjliifgaodjagh" # cookieautodelete
+      "gphhapmejobijbbhgpjhcjognlahblep" # gnome extensions
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
-    xorg.setxkbmap xorg.xmodmap xorg.xkbcomp xorg.xset xautomation xdotool xorg.xdpyinfo xclip xorg.xev xorg.xhost xorg.xwininfo imwheel
+    xorg.setxkbmap
+    xorg.xmodmap
+    xorg.xkbcomp
+    xorg.xset
+    xautomation
+    xdotool
+    xorg.xdpyinfo
+    xclip
+    xorg.xev
+    xorg.xhost
+    xorg.xwininfo
+    imwheel
+    (hunspellWithDicts (with hunspellDicts; [ en_GB-large en_US-large ru_RU ]))
+    xtrlock-pam
+    chromium brave
+    wmctrl
+    dragon-drop
+    paprefs pavucontrol pulsemixer
+    ffmpeg
   ];
 
   qt5 = {

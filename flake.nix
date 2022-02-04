@@ -52,7 +52,8 @@
 
         inputs.nix-store-emacs-packages.nixosModule
 
-        ./nix450s
+        ./machines/nix450s
+        ./modules/gui/gnome.nix
       ];
     };
 

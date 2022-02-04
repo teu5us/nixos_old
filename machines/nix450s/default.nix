@@ -4,16 +4,16 @@
   imports = [
     ./hardware-configuration.nix
     ./hardware.nix
-    ./general.nix
-    ./shell.nix
-    ./security.nix
-    ./network.nix
-    ./manual-openvpn.nix
-    ./virtualization.nix
-    ./gui.nix
-    ./db.nix
     ./kernel.nix
-    ../hm/paul/default.nix
+    ../../modules/base
+    ../../modules/shell
+    ../../modules/security
+    ../../modules/network
+    ../../modules/network/manual-openvpn.nix
+    ../../modules/virtualization
+    ../../modules/gui
+    ../../modules/db
+    ../../users/paul
   ];
 
   networking.hostName = "nix450s"; # Define your hostname.
@@ -40,7 +40,7 @@
 
   services.kmonad = {
     enable = true;
-    configfiles = [ ./kmonad-keymap-emacs.kbd ];
+    configfiles = [ ./files/kmonad-keymap-emacs.kbd ];
   };
 
   system.stateVersion = "21.11";

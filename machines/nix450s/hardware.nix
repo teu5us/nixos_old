@@ -101,4 +101,15 @@
     scsiLinkPolicy = "min_power";
     powertop.enable = true;
   };
+
+  services.xserver = {
+    videoDrivers = [ "modesetting" ];
+    useGlamor = true;
+    libinput = {
+      enable = true;
+      touchpad = {
+        disableWhileTyping = true;
+      };
+    };
+  };
 }

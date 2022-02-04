@@ -1,36 +1,6 @@
 { config, pkgs, options, lib, ... }:
 
 {
-  users = {
-    mutableUsers = false;
-    users = {
-      paul = {
-        isNormalUser = true;
-        createHome = true;
-        extraGroups = [
-          "wheel"
-          "video"
-          "audio"
-          "disk"
-          "networkmanager"
-          "input"
-          "uinput"
-          "dialout"
-          "docker"
-          "kvm"
-          "libvirtd"
-          "tty"
-        ]; # Enable ‘sudo’ and other groups for the user.
-        group = "users";
-        home = "/home/paul";
-        uid = 1000;
-        hashedPassword = "$6$6TbBDrWaFNFUxUu2$vbwiaynzRobGBSlqvmuGolQmOA7l2HeirACJCBIalVTLdspFFKo7Ho/VH/81jKrQqNoLM7/.wr0DNfjlHRafH0";
-        shell = pkgs.zsh;
-      };
-    };
-    extraGroups.uinput = { name = "uinput"; };
-  };
-
   boot.loader = {
     systemd-boot = {
       enable = true;
@@ -113,23 +83,6 @@
       enable = true;
       enableSSHSupport = true;
     };
-
-    chromium = {
-      enable = true;
-      extensions = [
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
-        "hfjbmagddngcpeloejdejnfgbamkjaeg" # vimium c
-        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # darkreader
-        "chphlpgkkbolifaimnlloiipkdnihall" # onetab
-        "lhaoghhllmiaaagaffababmkdllgfcmc" # atomic-chrome
-        "egpjdkipkomnmjhjmdamaniclmdlobbo" # firenvim
-        "djflhoibgkdhkhhcedjiklpkjnoahfmg" # user-agent switcher
-        "jinjaccalgkegednnccohejagnlnfdag" # violentmonkey
-        "oboonakemofpalcgghocfoadofidjkkk" # keepassxc-browser
-        "fhcgjolkccmbidfldomjliifgaodjagh" # cookieautodelete
-        "gphhapmejobijbbhgpjhcjognlahblep" # gnome extensions
-      ];
-    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -144,16 +97,11 @@
     libnotify
     bat
     aria2 curl wget
-    ffmpeg
     htop
     gitAndTools.gitFull
     vim
-    (hunspellWithDicts (with hunspellDicts; [ en_GB-large en_US-large ru_RU ]))
-    paprefs pavucontrol pulsemixer
-    xtrlock-pam
-    compton
-    chromium brave
-    wmctrl
-    dragon-drop
   ];
+
+  users.extraGroups.uinput = { name = "uinput"; };
+  users.mutableUsers = false;
 }

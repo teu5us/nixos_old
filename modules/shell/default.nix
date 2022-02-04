@@ -35,4 +35,7 @@ in
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
+  environment.sessionVariables = {
+    PATH = "$PATH:$HOME/.local/bin";
+  };
 }
