@@ -9,4 +9,8 @@
       config = builtins.readFile ./files/xmonad.hs;
     };
   };
+  programs.dconf.enable = true;
+  environment.systemPackages = [
+    pkgs.xmobar
+  ];
 }

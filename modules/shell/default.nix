@@ -12,6 +12,7 @@ let
     mkd = "mkdir -pv";
     diff = "diff --color=auto";
     grep = "grep --color=auto";
+    cp = "cp -i";
   };
 in
 {

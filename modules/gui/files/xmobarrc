@@ -1,0 +1,78 @@
+-- vim: ft=haskell
+Config  { font             = "xft:mono:size=10:antialias=true"
+	, alpha            = 230
+	-- , bgColor          = "#2E3440" -- now switch B and G channels to get transparency right
+	, bgColor          = "#2E4034"
+	, fgColor          = "#D8DEE9"
+	, position         = Top
+	, lowerOnStart     = False
+	, allDesktops      = True
+	, overrideRedirect = False
+	, sepChar          = "%"
+	, alignSep         = "}{"
+	-- , template         = " %StdinReader% }{ [ %kbd% ] <fc=#A3BE8C>::</fc> [ %alsa:default:Master%] <fc=#A3BE8C>::</fc> [ %battery% ] <fc=#A3BE8C>::</fc> [ %date% ] "
+	, template         = " %StdinReader% }{ [ %kbd% ] <fc=#A3BE8C>::</fc> [ %alsa:default:Master%] <fc=#A3BE8C>::</fc> [ %bat0% ] <fc=#A3BE8C>::</fc> [ %bat1% ] <fc=#A3BE8C>::</fc> [ %date% ] "
+	, commands         =
+		[ Run Date "<fc=#81A1C1>%a %_d %b %Y</fc> | <fc=#81A1C1>%H:%M</fc>" "date" 60
+		, Run StdinReader
+		-- , Run Battery
+		-- 	[ "--template" , "<acstatus>"
+		-- 	, "--Low"      , "10"        -- units: %
+		-- 	, "--High"     , "80"        -- units: %
+		-- 	, "--low"      , "#BF616A"
+		-- 	, "--normal"   , "#EBCB8B"
+		-- 	, "--high"     , "#A3BE8C"
+		-- 	, "--" -- battery specific options
+		-- 		-- discharging status
+		-- 		, "-o"	, "<left>% <timeleft>"
+		-- 		-- AC "on" status
+		-- 		, "-O"	, "<left>% <fc=#81A1C1>up ⍏</fc>"
+		-- 		-- charged status
+		-- 		, "-i"	, "<left>% <fc=#A3BE8C>full</fc>"
+		-- 	] 60
+		, Run BatteryN ["BAT0"]
+			[ "--template" , "<acstatus>"
+			, "--Low"      , "10"        -- units: %
+			, "--High"     , "80"        -- units: %
+			, "--low"      , "#BF616A"
+			, "--normal"   , "#EBCB8B"
+			, "--high"     , "#A3BE8C"
+			, "--" -- battery specific options
+				-- discharging status
+				, "-o"	, "<left>% <timeleft>"
+				-- AC "on" status
+				, "-O"	, "<left>% <fc=#81A1C1>up</fc>"
+				-- charged status
+				, "-i"	, "<left>% <fc=#A3BE8C>full</fc>"
+			] 60 "bat0"
+		, Run BatteryN ["BAT1"]
+			[ "--template" , "<acstatus>"
+			, "--Low"      , "10"        -- units: %
+			, "--High"     , "80"        -- units: %
+			, "--low"      , "#BF616A"
+			, "--normal"   , "#EBCB8B"
+			, "--high"     , "#A3BE8C"
+			, "--" -- battery specific options
+				-- discharging status
+				, "-o"	, "<left>% <timeleft>"
+				-- AC "on" status
+				, "-O"	, "<left>% <fc=#81A1C1>up</fc>"
+				-- charged status
+				, "-i"	, "<left>% <fc=#A3BE8C>full</fc>"
+			] 60 "bat1"
+		, Run Kbd
+			[ ("atr-dv" 	, "<fc=#EBCB8B>US</fc>")
+   			, ("us(dvorak)" 	, "<fc=#EBCB8B>US</fc>")
+			, ("atr-ru"         , "<fc=#D08770>RU</fc>")
+			, ("ru"         , "<fc=#D08770>RU</fc>")
+			]
+		, Run Alsa "default" "Master"
+			[ "--template" , "<fc=#A3BE8C><volumebar></fc> <volume>% <status> "
+			, "--"
+				, "-O" , "¤"
+				, "-o" , "·"
+				, "-C" , "#A3BE8C"
+				, "-c" , "#BF616A"
+			]
+		]
+        }

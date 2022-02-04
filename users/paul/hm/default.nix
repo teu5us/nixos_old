@@ -1,10 +1,16 @@
 { pkgs, lib, ... }:
 let
   aliases = {
-    e = "emacsclient -a ''";
+    # e = "emacsclient -a ''";
   };
+  exwm = pkgs.writeShellScriptBin "exwm" ''
+    emacs --eval '(run-exwm)'
+  '';
+  e = pkgs.writeShellScriptBin "e" ''
+    setsid --fork emacsclient -a "" $* 2>&1 >/dev/null
+  '';
 in
-{
+rec {
   nixpkgs.config.allowUnfree = true;
 
   programs = {
@@ -53,7 +59,7 @@ in
           history = 10000;
           multiplier = 5;
         };
-        font = { size = 12; };
+        font = { size = 8; };
         opacity = 0.9;
         key_bindings = [
           {
@@ -211,7 +217,11 @@ in
   };
 
   services = {
-    lorri.enable = true;
+    clipmenu.enable = false;
+
+    syncthing = {
+      enable = true;
+    };
 
     picom = {
       enable = true;
@@ -233,11 +243,24 @@ in
   };
 
   xsession = {
+    enable = true;
+    windowManager.command = "exwm";
+    scriptPath = ".xinitrc";
     pointerCursor = {
       package = pkgs.numix-cursor-theme;
       name = "Numix-Cursor-Light";
       size = 28;
     };
+    initExtra = ''
+      ${pkgs.xorg.xrdb}/bin/xrdb -merge ~/.Xresources &
+      ${pkgs.feh}/bin/feh --bg-scale ~/.config/wall.png &
+      ${pkgs.numlockx}/bin/numlockx &
+    '' + lib.optionalString (xsession.windowManager.command == "exwm") ''
+      export XMODIFIERS=@im=exwm-xim
+      export GTK_IM_MODULE=xim
+      export QT_IM_MODULE=xim
+      export CLUTTER_IM_MODULE=xim
+    '';
   };
 
   gtk = {
@@ -275,7 +298,6 @@ in
       gnome.gnome-tweaks
       keepassxc
       libreoffice-fresh
-      numlockx
       openvpn
       pandoc
       pulsemixer
@@ -288,6 +310,8 @@ in
       xcalib
       yandex-disk
       zoom-us
+      exwm
+      e
     ];
 
     file = {
@@ -298,6 +322,7 @@ in
 
       ".tmux.conf".source = ./files/tmux.conf;
       ".tmate.conf".source = ./files/tmate.conf;
+      ".xmobarrc".source = ../../../modules/gui/files/xmobarrc;
     };
   };
 }
