@@ -228,7 +228,7 @@
 
   qt5 = {
     enable = true;
-    style = "adwaita";
+    style = "adwaita-dark";
     platformTheme = "gnome";
   };
 }
