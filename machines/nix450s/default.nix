@@ -18,7 +18,7 @@
 
   networking.hostName = "nix450s"; # Define your hostname.
 
-  boot.kernelPackages = pkgs.linuxPackages_5_4;
+  boot.kernelPackages = pkgs.linuxPackages_5_16;
 
   fileSystems = {
     "/".options = [ "noatime" "nodiratime" "discard" ];
