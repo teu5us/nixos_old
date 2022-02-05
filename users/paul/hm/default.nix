@@ -7,7 +7,11 @@ let
     emacs --eval '(run-exwm)'
   '';
   e = pkgs.writeShellScriptBin "e" ''
-    setsid --fork emacsclient -a "" $* 2>&1 >/dev/null
+    case "$1" in
+      -t) run="" ;;
+      *) run="setsid --fork" ;;
+    esac
+    $run emacsclient -a "" $@ 2>/dev/null
   '';
 in
 rec {
