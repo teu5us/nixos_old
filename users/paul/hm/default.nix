@@ -206,7 +206,8 @@ rec {
       enable = true;
       config = {
         vo = "gpu";
-        hwdec = "auto-copy";
+        hwdec = "auto-safe";
+        profile = "gpu-hq";
         hwdec-codecs = "all";
         sub-font-size = "22";
       };
