@@ -1,6 +1,10 @@
 { config, pkgs, options, lib, ... }:
 
 {
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+
   sound = {
     enable = true;
     mediaKeys = {
