@@ -24,7 +24,7 @@
       daemon.config = {
         default-sample-format = "float32ne";
         resample-method = "src-sinc-best-quality";
-        alternate-sample-rate = 96000;
+        alternate-sample-rate = 48000;
       };
       extraModules = [ pkgs.pulseaudio-modules-bt ];
       extraConfig = ''
