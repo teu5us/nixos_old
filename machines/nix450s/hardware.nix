@@ -104,6 +104,7 @@
     enable = true;
     scsiLinkPolicy = "min_power";
     powertop.enable = true;
+    cpuFreqGovernor = "schedutil";
   };
 
   services.xserver = {
