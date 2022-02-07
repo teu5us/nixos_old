@@ -32,6 +32,7 @@ in
       autosuggestions = {
         enable = true;
       };
+      shellAliases = aliases;
     };
   };
 
