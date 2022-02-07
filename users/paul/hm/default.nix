@@ -258,7 +258,7 @@ rec {
     };
     initExtra = ''
       ${pkgs.xorg.xrdb}/bin/xrdb -merge ~/.Xresources &
-      ${pkgs.feh}/bin/feh --bg-scale ~/.config/wall.png &
+      ${pkgs.feh}/bin/feh --bg-scale ~/.config/wall.jpg &
       ${pkgs.numlockx}/bin/numlockx &
     '' + lib.optionalString (xsession.windowManager.command == "exwm") ''
       export XMODIFIERS=@im=exwm-xim
