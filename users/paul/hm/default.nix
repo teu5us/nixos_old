@@ -303,6 +303,7 @@ rec {
       gnome.gnome-tweaks
       keepassxc
       libreoffice-fresh
+      maim
       openvpn
       pandoc
       pulsemixer
@@ -317,6 +318,10 @@ rec {
       zoom-us
       exwm
       e
+    ]
+    ++ lib.optionals (xsession.windowManager.command == "exwm") [
+      sushi
+      nautilus
     ];
 
     file = {
