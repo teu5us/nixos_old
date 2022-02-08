@@ -320,8 +320,8 @@ rec {
       e
     ]
     ++ lib.optionals (xsession.windowManager.command == "exwm") [
-      sushi
-      nautilus
+      gnome.sushi
+      gnome.nautilus
     ];
 
     file = {
