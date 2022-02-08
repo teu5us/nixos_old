@@ -39,6 +39,28 @@
   nixpkgs.overlays = [
     (self: super: {
       nix-direnv = super.nix-direnv-flakes;
+      nixos-profile = pkgs.writeShellScriptBin "nixos-profile" ''
+        baseDir="/nix/var/nix/profiles/system-profiles"
+        if [ ! -d "$baseDir" ]; then
+          echo "System has no profiles."
+          exit 1
+        else
+          name="$1"
+          action="$2"
+
+          case "$action" in
+            switch) do="Switching to" ;;
+            boot) do="Switching on boot to" ;;
+            test) do="Testing" ;;
+            *) echo "Unknown action \"$action\""; exit 1 ;;
+          esac
+
+          if [ -f "$baseDir/$name/bin/switch-to-configuration" ]; then
+            echo "$do $name."
+            "$baseDir/$name/bin/switch-to-configuration" "$action"
+          fi
+        fi
+      '';
     })
   ];
 
@@ -100,6 +122,7 @@
     htop
     gitAndTools.gitFull
     vim
+    nixos-profile
   ];
 
   users.extraGroups.uinput = { name = "uinput"; };
