@@ -130,10 +130,10 @@
           Option "YAxisMapping" "4 5"
           Option "AccelerationProfile" "2"
           Option "AccelerationThreshold" "0"
-          Option "AccelerationNumerator" "5"
-          Option "AccelerationDenominator" "2"
+          Option "AccelerationNumerator" "30"
+          Option "AccelerationDenominator" "12"
           Option "AdaptiveDeceleration" "3"
-          Option "VelocityScale" "1.7"
+          Option "VelocityScale" "1"
           Option "DragLockButtons" "10"
         ''
         ''
@@ -149,10 +149,10 @@
           Option "YAxisMapping" "4 5"
           Option "AccelerationProfile" "2"
           Option "AccelerationThreshold" "0"
-          Option "AccelerationNumerator" "5"
-          Option "AccelerationDenominator" "2"
+          Option "AccelerationNumerator" "30"
+          Option "AccelerationDenominator" "12"
           Option "AdaptiveDeceleration" "3"
-          Option "VelocityScale" "1.7"
+          Option "VelocityScale" "1"
           Option "DragLockButtons" "10"
         ''
       ];
