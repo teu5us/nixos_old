@@ -39,5 +39,6 @@ in
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables = {
     PATH = "$PATH:$HOME/.local/bin";
+    PROMPT_SFZ_CHAR = "λ";
   };
 }
