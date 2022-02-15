@@ -4,8 +4,7 @@
   containers.pgsql = {
     config = import ./config.nix;
     privateNetwork = true;
-    forwardPorts = [
-      { hostPort = 5432; }
-    ];
+    hostAddress = "10.233.1.1";
+    localAddress = "10.233.1.2";
   };
 }
