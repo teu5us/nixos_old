@@ -12,8 +12,8 @@
     ../../modules/network/manual-openvpn.nix
     ../../modules/virtualization
     ../../modules/gui
-    ../../modules/db
     ../../users/paul
+    ../../containers/pgsql
   ];
 
   networking.hostName = "nix450s"; # Define your hostname.
