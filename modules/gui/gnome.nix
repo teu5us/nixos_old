@@ -4,6 +4,7 @@
   services.xserver = {
     displayManager = {
       gdm.enable = true;
+      gdm.wayland = false;
       defaultSession = "gnome-xorg";
     };
     desktopManager = {
