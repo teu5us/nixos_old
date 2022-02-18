@@ -83,6 +83,7 @@
     enable = true;
     permitRootLogin = "no";
     forwardX11 = false;
+    passwordAuthentication = false;
   };
 
   services.nscd.enable = true;
