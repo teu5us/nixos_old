@@ -1,6 +1,7 @@
 { config, pkgs, options, lib, ... }:
 
 {
+  imports = [ ./xmonad.nix ];
   services.xserver = {
     displayManager = {
       gdm.enable = true;
@@ -24,5 +25,6 @@
     unite
     floating-dock
     gsconnect
+    pkgs.xmobar
   ];
 }
