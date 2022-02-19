@@ -23,7 +23,7 @@ inputs.nixpkgs.lib.nixosSystem {
 
     ({ pkgs, lib, ... }: {
       imports =
-        lib.optional (builtins.pathExists /etc/nixos/cachix.nix) /etc/nixos.cachix.nix;
+        lib.optional (builtins.pathExists /etc/nixos/cachix.nix) /etc/nixos/cachix.nix;
       environment.systemPackages =
         lib.optional (builtins.pathExists /etc/nixos/cachix.nix) pkgs.cachix;
     })
@@ -32,7 +32,7 @@ inputs.nixpkgs.lib.nixosSystem {
 
     inputs.nix-store-emacs-packages.nixosModule
 
-    ({ pkgs, ... }: {
+    ({ config, ... }: {
       nixpkgs.overlays = [
         inputs.emacs-overlay.overlay
       ];
