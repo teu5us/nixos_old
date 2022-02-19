@@ -27,7 +27,7 @@
   inputs.nix-store-emacs-packages.url = "github:teu5us/nix-store-emacs-packages";
   inputs.nix-store-emacs-packages.inputs.nixpkgs.follows = "nixpkgs";
 
-  inputs.emacs-overlay.url = "github:nix-community/emacs-overlay";
+  inputs.emacs-overlay.url = "github:nix-community/emacs-overlay?rev=396182cd543073db96ea696bd2a41cb24e87781f";
 
   outputs = inputs:
     let baseSystem = import ./base-system.nix inputs;
