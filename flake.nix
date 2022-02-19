@@ -27,39 +27,18 @@
   inputs.nix-store-emacs-packages.url = "github:teu5us/nix-store-emacs-packages";
   inputs.nix-store-emacs-packages.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs: rec {
+  inputs.emacs-overlay.url = "github:nix-community/emacs-overlay";
 
-      baseSystem = system: modules: (inputs.nixpkgs.lib.nixosSystem {
-        system = system;
-        # Things in this set are passed to modules and accessible
-        # in the top-level arguments (e.g. `{ pkgs, lib, inputs, ... }:`).
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          inputs.home-manager.nixosModules.home-manager
+  outputs = inputs:
+    let baseSystem = import ./baseSystem inputs;
+    in
+      {
 
-          ({ pkgs, ... }: {
-            nix.extraOptions = "experimental-features = nix-command flakes";
-            nix.package = pkgs.nixFlakes;
-            nix.registry.nixpkgs.flake = inputs.nixpkgs;
+        nixosConfigurations.nix450s = baseSystem "x86_64-linux"
+          [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil ];
 
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-          })
+        nixosConfigurations.nix450s-startx = baseSystem "x86_64-linux"
+          [ ./machines/nix450s ./modules/gui/startx.nix ./modules/yggdrasil ];
 
-          inputs.kmonad.nixosModule
-
-          inputs.nix-store-emacs-packages.nixosModule
-        ] ++ modules;
-      });
-
-
-      nixosConfigurations.nix450s = baseSystem "x86_64-linux"
-        [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil ];
-
-      nixosConfigurations.nix450s-startx = baseSystem "x86_64-linux"
-        [ ./machines/nix450s ./modules/gui/startx.nix ./modules/yggdrasil ];
-
-    };
+      };
 }

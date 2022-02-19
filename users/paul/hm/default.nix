@@ -20,7 +20,7 @@ rec {
   programs = {
     emacs = {
       enable = true;
-      package = pkgs.emacs.override { imagemagick = pkgs.imagemagickBig; };
+      package = pkgs.emacsGcc;
       extraPackages = (epkgs:
         let requiredPackages =
               map (p: epkgs.${p})
