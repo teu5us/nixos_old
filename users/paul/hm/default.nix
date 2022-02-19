@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   aliases = {
     # e = "emacsclient -a ''";
@@ -222,6 +222,16 @@ rec {
   };
 
   services = {
+    emacs = {
+      enable = true;
+      package = config.programs.emacs.finalPackage;
+      client = {
+        enable = true;
+        arguments = [ "-c" "-a" "''" ];
+      };
+      socketActivation.enable = true;
+    };
+
     clipmenu.enable = false;
 
     syncthing = {
