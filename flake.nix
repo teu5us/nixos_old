@@ -30,7 +30,7 @@
   inputs.emacs-overlay.url = "github:nix-community/emacs-overlay";
 
   outputs = inputs:
-    let baseSystem = import ./baseSystem inputs;
+    let baseSystem = import ./base-system.nix inputs;
     in
       {
 
