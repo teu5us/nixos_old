@@ -31,5 +31,16 @@
       };
     };
   };
+
   home-manager.users.paul = import ./hm;
+
+  services.xserver.displayManager.session = [
+    { manage = "window";
+      name = "exwm";
+      start = ''
+        exwm &
+        waitPID=$!
+      '';
+    }
+  ];
 }
