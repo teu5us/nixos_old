@@ -306,6 +306,12 @@ rec {
     username = "paul";
     homeDirectory = "/home/${username}";
 
+    keyboard = {
+      layout = "us,ru";
+      variant = ",";
+      options = [ "grp:shifts_toggle" ];
+    };
+
     packages = with pkgs; [
       anydesk
       discord
