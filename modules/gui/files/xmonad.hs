@@ -230,7 +230,7 @@ scratchpads =
     ]
   where
   -- spawnST = "st -g 100x20 -c scratch -e tmuxdd"
-    spawnST       = "alacritty -d 100 20 -t scratch -e tmuxdd"
+    spawnST       = "alacritty -t scratch -e tmuxdd"
     spawnTerm     = "emacsclient -n -e '(equake-invoke)'"
     findTermTitle = (title =?)
     findTermClass = (className =?)
