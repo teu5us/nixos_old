@@ -11,6 +11,7 @@
       xkbVariant = ",";
       xkbOptions = "grp:shifts_toggle";
       # xkbOptions = "lv3:ralt_switch, grp_led:caps, caps:super";
+      updateDbusEnvironment = true;
       inputClassSections = [
         ''
           Identifier "Logitech MX Ergo"
