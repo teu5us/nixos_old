@@ -285,8 +285,6 @@ myAdditionalKeys =
         , ("M-<F12>", spawn "prompt 'Hibernate?' 'systemctl hibernate'")
           -- }}}
           -- Controls {{{
-          -- , ("M-=" , spawn "lmc up 5")
-          -- , ("M--" , spawn "lmc down 5")
         , ("<XF86AudioRaiseVolume>"  , spawn "lmc up 5")
         , ("<XF86AudioLowerVolume>"  , spawn "lmc down 5")
         , ("S-<XF86AudioRaiseVolume>", spawn "lmc up 10")
@@ -296,7 +294,6 @@ myAdditionalKeys =
         , ("M-S-="                   , spawn "lmc up 10")
         , ("M-S--"                   , spawn "lmc down 10")
         , ("<XF86AudioMute>"         , spawn "lmc mute")
-        , ("M-s m"                   , spawn "lmc mute")
           -- , ("<XF86MonBrightnessUp>",   spawn "xbacklight -inc 10")
           -- , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
         , ("M-S-x"                   , spawn "prompt 'Shutdown?' 'poweroff'")
