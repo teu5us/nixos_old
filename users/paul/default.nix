@@ -38,7 +38,7 @@
     { manage = "window";
       name = "exwm";
       start = ''
-        exwm &
+        dbus-launch --sh-syntax --exit-with-session exwm
         waitPID=$!
       '';
     }
