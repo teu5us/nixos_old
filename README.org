@@ -1,0 +1,36 @@
+#+startup: fold indent
+
+* About
+This repository accumulates my NixOS configurations.
+
+Inputs are supplied in ~flake.nix~ and include:
+
+1. [[https://github.com/NixOS/nixpkgs][nixpkgs]]
+2. [[https://github.com/nix-community/home-manager][home-manager]] (follows nixpkgs)
+3. [[https://github.com/kmonad/kmonad][kmonad]] (follows nixpkgs)
+4. [[https://github.com/teu5us/nix-store-emacs-packages][nix-store-emacs-packages]] (follows nixpkgs)
+5. [[https://github.com/nix-community/emacs-overlay][emacs-overlay]]
+
+Inputs are mainly used in ~base-system.nix~, that provides basis for my configurations. Included:
+
+1. Nix is configured to use flakes.
+2. nixpkgs flake is pinned and added to ~NIX_PATH~ to support old ~nix-shell~
+3. cachix is added automatically, if ~cachix.nix~ exists in its standard location
+4. kmonad modules
+5. nix-store-emacs-packages and emacs overlays
+
+~base-system.nix~ is imported as a function that takes system type and a list of modules.
+
+Also see [[https://www.tweag.io/blog/2020-07-31-nixos-flakes/][this]] for a flake reference.
+* Installation
+1. Clone the repository (or maybe even fork it?).
+2. Write your configuration preferably in the ~machines~ directory.
+   - Reuse provided modules or write your own.
+   - It is also preferable that configuration name matches your machine's hostname.
+3. In the root of the repository run ~nix run nixpkgs.nixFlakes -c sudo nix --experimental-features 'flakes nix-command' build .#nixosConfigurations.$(hostname).config.system.build.toplevel~
+4. In the root of the repository run ~sudo ./result/bin/switch-to-configuration switch~
+5. Now you can remove ~./result~
+6. Rebuild your system using ~sudo nixos-rebuild switch --flake <path>#<configuration name>~. You can only pass the path, if configuration name matches your hostname.
+7. To update all inputs run ~nix flake update~
+8. To update single input run ~nix flake lock --update-input <input name>~
+9. Don't forget to commit the lock file.
