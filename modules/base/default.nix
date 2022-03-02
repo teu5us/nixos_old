@@ -1,4 +1,4 @@
-{ config, pkgs, options, lib, ... }:
+{ config, pkgs, options, lib, inputs, ... }:
 
 {
   boot.loader = {
@@ -26,9 +26,10 @@
 
   nix = {
     trustedUsers = [ "root" ];
-    nixPath = [ "nixpkgs=${pkgs.path}" ];
-    # nixPath = options.nix.nixPath.default
-    #   ++ [ "nixpkgs-overlays=/etc/nixos/overlays-compat/" ];
+    nixPath = [
+      "nixpkgs=${pkgs.path}"
+      "nixpkgs-overlays=${inputs.self}/modules/overlays-compat/"
+    ];
   };
 
   nixpkgs.config = {
