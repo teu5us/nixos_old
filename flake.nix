@@ -24,12 +24,12 @@
     let baseSystem = import ./base-system.nix inputs;
     in
       {
-
-        nixosConfigurations.nix450s = baseSystem "x86_64-linux"
-          [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil ];
-
-        nixosConfigurations.nix450s-startx = baseSystem "x86_64-linux"
-          [ ./machines/nix450s ./modules/gui/startx.nix ./modules/yggdrasil ];
-
+        nixosConfigurations = {
+          nix450s = baseSystem "x86_64-linux"
+            [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil ];
+          nix450s-startx = baseSystem "x86_64-linux"
+            [ ./machines/nix450s ./modules/gui/startx.nix ./modules/yggdrasil ];
+        };
+        overlay = import ./packages;
       };
 }

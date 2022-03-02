@@ -35,6 +35,7 @@ inputs.nixpkgs.lib.nixosSystem {
     ({ config, ... }: {
       nixpkgs.overlays = [
         inputs.emacs-overlay.overlay
+        (import ./packages)
       ];
     })
   ] ++ modules;
