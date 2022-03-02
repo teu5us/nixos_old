@@ -20,7 +20,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay?rev=396182cd543073db96ea696bd2a41cb24e87781f";
   };
 
-  outputs = inputs:
+  outputs = inputs@{ self, nixpkgs, home-manager, kmonad, nix-store-emacs-packages, emacs-overlay }:
     let baseSystem = import ./base-system.nix inputs;
     in
       {
