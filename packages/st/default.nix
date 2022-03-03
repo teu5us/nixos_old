@@ -1,7 +1,5 @@
-{ stdenv, fetchgit, pkgconfig, writeText, libX11, ncurses, libXext, libXft, fontconfig
+{ stdenv, lib, fetchgit, pkgconfig, writeText, libX11, ncurses, libXext, libXft, fontconfig
 , conf? null, patches ? []}:
-
-with stdenv.lib;
 
 stdenv.mkDerivation rec {
   name = "st-0.8.2";
@@ -12,8 +10,8 @@ stdenv.mkDerivation rec {
     sha256 = "1sghnwczcbph4c27z79sy3l07gy4bv2hqp4wmhpjdjmscncwb3bk";
   };
 
-  configFile = optionalString (conf!=null) (writeText "config.def.h" conf);
-  preBuild = optionalString (conf!=null) "cp ${configFile} config.def.h";
+  configFile = lib.optionalString (conf!=null) (writeText "config.def.h" conf);
+  preBuild = lib.optionalString (conf!=null) "cp ${configFile} config.def.h";
 
   # Allow users to apply their own list of patches
   inherit patches;
@@ -28,8 +26,8 @@ stdenv.mkDerivation rec {
 
   meta = {
     homepage = http://st.suckless.org/;
-    license = stdenv.lib.licenses.mit;
-    maintainers = with maintainers; [viric];
-    platforms = with platforms; linux;
+    license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [viric];
+    platforms = with lib.platforms; linux;
   };
 }
