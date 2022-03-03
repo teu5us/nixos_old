@@ -16,8 +16,6 @@
     ../../containers/pgsql
   ];
 
-  networking.hostName = "nix450s"; # Define your hostname.
-
   boot.kernelPackages = pkgs.linuxPackages_5_16;
 
   fileSystems = {

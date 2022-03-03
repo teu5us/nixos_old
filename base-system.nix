@@ -1,7 +1,19 @@
 inputs:
 
-system: modules:
+{ hostname, system, modules, overlay-compat-config ? hostname }:
 
+let
+  overlays-compat = builtins.toFile "overlays.nix" ''
+    self: super:
+    with super.lib;
+    let
+      # Load the system config and get the `nixpkgs.overlays` option
+      overlays = (import ${./.}).nixosConfigurations.${overlay-compat-config}.config.nixpkgs.overlays;
+    in
+      # Apply all overlays to the input of the current "main" overlay
+      foldl' (flip extends) (_: super) overlays self
+  '';
+in
 inputs.nixpkgs.lib.nixosSystem {
   system = system;
   # Things in this set are passed to modules and accessible
@@ -15,10 +27,17 @@ inputs.nixpkgs.lib.nixosSystem {
     ({ pkgs, ... }: {
       nix.extraOptions = "experimental-features = nix-command flakes";
       nix.package = pkgs.nixFlakes;
+      nix.nixPath = [
+        "nixpkgs-overlays=/etc/nixos/overlays-compat/"
+      ];
       nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
+
+      environment.etc = {
+        "nixos/overlays-compat/overlays.nix".source = overlays-compat;
+      };
     })
 
     ({ pkgs, lib, ... }: {
@@ -33,6 +52,7 @@ inputs.nixpkgs.lib.nixosSystem {
     inputs.nix-store-emacs-packages.nixosModule
 
     ({ config, ... }: {
+      networking.hostName = hostname; # Define your hostname.
       nixpkgs.overlays = [
         inputs.emacs-overlay.overlay
         (import ./packages)

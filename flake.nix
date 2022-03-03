@@ -18,17 +18,26 @@
     };
 
     emacs-overlay.url = "github:nix-community/emacs-overlay?rev=396182cd543073db96ea696bd2a41cb24e87781f";
+
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, kmonad, nix-store-emacs-packages, emacs-overlay }:
+  outputs = inputs@{ self, nixpkgs, home-manager, kmonad, nix-store-emacs-packages, emacs-overlay, flake-compat }:
     let baseSystem = import ./base-system.nix inputs;
     in
       {
         nixosConfigurations = {
-          nix450s = baseSystem "x86_64-linux"
-            [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil ];
-          nix450s-startx = baseSystem "x86_64-linux"
-            [ ./machines/nix450s ./modules/gui/startx.nix ./modules/yggdrasil ];
+          nix450s = baseSystem {
+            hostname = "nix450s";
+            system = "x86_64-linux";
+            modules = [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil ];
+          };
+
+          # nix450s-startx = baseSystem "x86_64-linux"
+          #   [ ./machines/nix450s ./modules/gui/startx.nix ./modules/yggdrasil ];
         };
         overlay = import ./packages;
       };

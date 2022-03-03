@@ -28,7 +28,6 @@
     trustedUsers = [ "root" ];
     nixPath = [
       "nixpkgs=${pkgs.path}"
-      "nixpkgs-overlays=${inputs.self}/modules/overlays-compat/"
     ];
   };
 
