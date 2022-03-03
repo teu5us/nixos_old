@@ -8,4 +8,5 @@ self: super: {
     buildPythonPackage = super.python3.pkgs.buildPythonPackage;
     fetchPypi = super.python3.pkgs.fetchPypi;
   };
+  easystroke = super.callPackage ./easystroke {};
 }
