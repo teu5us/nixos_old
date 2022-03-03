@@ -1,0 +1,46 @@
+diff --git a/config.h b/config.h
+index 52a884a..a352ad0 100644
+--- a/config.h
++++ b/config.h
+@@ -238,9 +238,9 @@ static Shortcut shortcuts[] = {
+ 	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
+ 	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
+ 	{ MODKEY,               XK_Home,        zoomreset,      {.f =  0} },
+-	{ MODKEY,               XK_c,           clipcopy,       {.i =  0} },
++	{ MODKEY,               XK_y,           clipcopy,       {.i =  0} },
+ 	{ ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
+-	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
++	{ MODKEY,               XK_p,           clippaste,      {.i =  0} },
+ 	{ XK_ANY_MOD,		Button2,	selpaste,	{.i =  0} },
+ 	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
+ 	{ MODKEY,               XK_Control_L,   iso14755,       {.i =  0} },
+@@ -261,7 +261,7 @@ static Shortcut shortcuts[] = {
+ 	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
+ 	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
+ 	{ MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
+-	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
++	{ TERMMOD,              XK_y,           externalpipe,   {.v = copyurlcmd } },
+ 	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
+ };
+ 
+diff --git a/st-copyout b/st-copyout
+index 0d19e5a..0db5bcd 100755
+--- a/st-copyout
++++ b/st-copyout
+@@ -1,8 +1,9 @@
+ #!/bin/sh
+ # Using external pipe with st, give a dmenu prompt of recent commands,
+ # allowing the user to copy the output of one.
+-# xclip required for this script.
++# xsel required for this script.
+ # By Jaywalker and Luke
++# Patched to use xsel by Paul
+ tmpfile=$(mktemp /tmp/st-cmd-output.XXXXXX)
+ trap 'rm "$tmpfile"' 0 1 15
+ sed -n "w $tmpfile"
+@@ -10,4 +11,4 @@ sed -i 's/\x0//g' "$tmpfile"
+ ps1="$(grep "\S" "$tmpfile" | tail -n 1 | sed 's/^\s*//' | cut -d' ' -f1)"
+ chosen="$(grep -F "$ps1" "$tmpfile" | sed '$ d' | tac | dmenu -p "Copy which command's output?" -i -l 10 | sed 's/[^^]/[&]/g; s/\^/\\^/g')"
+ eps1="$(echo "$ps1" | sed 's/[^^]/[&]/g; s/\^/\\^/g')"
+-awk "/^$chosen$/{p=1;print;next} p&&/$eps1/{p=0};p" "$tmpfile" | xclip -selection clipboard
++awk "/^$chosen$/{p=1;print;next} p&&/$eps1/{p=0};p" "$tmpfile" | xsel -b
