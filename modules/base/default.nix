@@ -9,6 +9,7 @@
     };
     efi.canTouchEfiVariables = true;
   };
+  boot.plymouth.enable = true;
 
   console = {
     earlySetup = true;
