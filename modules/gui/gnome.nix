@@ -14,6 +14,13 @@
         # set backround image and cursor
         ${pkgs.feh}/bin/feh --bg-scale ~/.config/wall.jpg &
         xsetroot -cursor_name left_ptr &
+
+        if [ "$XDG_SESSION_DESKTOP" = "none+exwm" ]; then
+           export XMODIFIERS=@im=exwm-xim
+           export GTK_IM_MODULE=xim
+           export QT_IM_MODULE=xim
+           export CLUTTER_IM_MODULE=xim
+        fi
       '';
     };
     desktopManager = {
