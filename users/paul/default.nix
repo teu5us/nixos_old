@@ -19,6 +19,7 @@
           "kvm"
           "libvirtd"
           "tty"
+          "fuse"
         ]; # Enable ‘sudo’ and other groups for the user.
         group = "users";
         home = "/home/paul";
