@@ -40,6 +40,7 @@ rec {
         http.followRedirects = "true";
         http.maxRequests = 5;
         protocol.version = 2;
+        init.defaultBranch = "main";
       };
     };
 
