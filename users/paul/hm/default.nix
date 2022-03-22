@@ -334,6 +334,32 @@ rec {
       zoom-us
       exwm
       e
+      (pkgs.vscode-with-extensions.override {
+        vscodeExtensions = (with pkgs.vscode-extensions; [
+          vscodevim.vim
+          bbenoist.nix
+          ms-python.python
+          ms-python.vscode-pylance
+          ms-toolsai.jupyter
+          justusadam.language-haskell
+          haskell.haskell
+          dracula-theme.theme-dracula
+          zhuangtongfa.material-theme
+        ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "vscode-direnv";
+            publisher = "cab404";
+            version = "1.0.0";
+            sha256 = "sha256-+nLH+T9v6TQCqKZw6HPN/ZevQ65FVm2SAo2V9RecM3Y=";
+          }
+          {
+            name = "syntax-highlighter";
+            publisher = "evgeniypeshkov";
+            version = "0.5.0";
+            sha256 = "sha256-2XUuI90rVnC8pRUgAOPw3wHa3GcnuGIr2U/qTCn3dKA=";
+          }
+        ];
+      })
     ]
     ++ lib.optionals (xsession.windowManager.command == "exwm") [
       gnome.sushi
