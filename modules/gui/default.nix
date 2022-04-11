@@ -65,7 +65,7 @@
           Option "YAxisMapping" "4 5"
           Option "AccelerationProfile" "0"
           Option "AccelerationThreshold" "0"
-          Option "AccelerationNumerator" "6"
+          Option "AccelerationNumerator" "5"
           Option "AccelerationDenominator" "2"
           Option "AdaptiveDeceleration" "1"
           Option "VelocityScale" "3"
