@@ -33,13 +33,14 @@
     transparent-window-moving
     quake-mode
     clipboard-indicator
-    blur-my-shell
     sound-output-device-chooser
     bluetooth-quick-connect
     tray-icons-reloaded
     unite
     floating-dock
     gsconnect
+    proxy-switcher
+    material-shell
     pkgs.xmobar
   ];
 }
