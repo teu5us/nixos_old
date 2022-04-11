@@ -19,7 +19,7 @@
       package = pkgs.bluezFull;
     };
     pulseaudio = {
-      enable = true;
+      enable = false;
       package = pkgs.pulseaudioFull;
       daemon.config = {
         default-sample-format = "float32ne";
@@ -116,5 +116,11 @@
         disableWhileTyping = true;
       };
     };
+  };
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
   };
 }
