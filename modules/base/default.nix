@@ -39,7 +39,7 @@
 
   nixpkgs.overlays = [
     (self: super: {
-      nix-direnv = super.nix-direnv-flakes;
+      # nix-direnv = super.nix-direnv-flakes;
       nixos-profile = pkgs.writeShellScriptBin "nixos-profile" ''
         baseDir="/nix/var/nix/profiles/system-profiles"
         if [ ! -d "$baseDir" ]; then
