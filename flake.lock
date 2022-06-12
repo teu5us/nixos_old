@@ -1,18 +1,21 @@
 {
   "nodes": {
     "emacs-overlay": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs"
+      },
       "locked": {
-        "lastModified": 1645201754,
-        "narHash": "sha256-pwOVu8W+s9lak2RMON85ZHYIn9olECGqY9Ydt6Y/URA=",
+        "lastModified": 1655032304,
+        "narHash": "sha256-t0E7c7V+hk6ILXl4+TBLqQfqq8/4IKyb/cFg0a8mqI8=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "396182cd543073db96ea696bd2a41cb24e87781f",
+        "rev": "a73897fc387a83c8dd2142ed597041113954ec23",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "396182cd543073db96ea696bd2a41cb24e87781f",
         "type": "github"
       }
     },
@@ -33,6 +36,21 @@
       }
     },
     "flake-utils": {
+      "locked": {
+        "lastModified": 1653893745,
+        "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "1ed9fb1935d260de5fe1c2f7ee0ebaae17ed2fa1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
       "locked": {
         "lastModified": 1631561581,
         "narHash": "sha256-3VQMV5zvxaVLvqqUrNz3iJelLw30mIVSfZmAaauM3dA=",
@@ -74,7 +92,7 @@
     },
     "kmonad": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -116,6 +134,19 @@
       }
     },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1644193793,
+        "narHash": "sha256-ggCI5LCXwkUJQwjpkr9qDFbQMiK3JvAfeNR4Uy0ny5Q=",
+        "path": "/nix/store/mihiym1pvr3p2nkk8l8iijbab6j1zf63-source",
+        "rev": "521e4d7d13b09bc0a21976b9d19abd197d4e3b1e",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1654936503,
         "narHash": "sha256-soKzdhI4jTHv/rSbh89RdlcJmrPgH8oMb/PLqiqIYVQ=",
@@ -169,7 +200,7 @@
         "home-manager": "home-manager",
         "kmonad": "kmonad",
         "nix-store-emacs-packages": "nix-store-emacs-packages",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "utils": {
