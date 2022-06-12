@@ -16,7 +16,7 @@
     ../../containers/pgsql
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_16;
+  boot.kernelPackages = pkgs.linuxPackages_5_18;
 
   fileSystems = {
     "/".options = [ "noatime" "nodiratime" "discard" ];
