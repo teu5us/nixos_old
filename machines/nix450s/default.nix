@@ -38,7 +38,10 @@
 
   services.kmonad = {
     enable = true;
-    configfiles = [ ./files/kmonad-keymap-emacs.kbd ];
+    keyboards.nix450s = {
+      device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+      config = builtins.readFile ./files/kmonad-keymap-emacs.kbd;
+    };
   };
 
   system.stateVersion = "21.11";

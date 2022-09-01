@@ -56,7 +56,7 @@ inputs.nixpkgs.lib.nixosSystem {
         lib.optional (builtins.pathExists /etc/nixos/cachix.nix) pkgs.cachix;
     })
 
-    inputs.kmonad.nixosModule
+    inputs.kmonad.nixosModules.default
 
     inputs.nix-store-emacs-packages.nixosModule
 
