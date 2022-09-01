@@ -162,7 +162,7 @@
 
   fonts = {
     fonts = with pkgs; [
-      opensans-ttf
+      open-sans
       dejavu_fonts
       corefonts
       (nerdfonts.override { fonts = [ "FiraCode" "Iosevka" ]; })
@@ -222,7 +222,7 @@
     xtrlock-pam
     chromium brave
     wmctrl
-    dragon-drop
+    xdragon
     paprefs pavucontrol pulsemixer
     ffmpeg
   ];

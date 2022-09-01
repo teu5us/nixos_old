@@ -27,6 +27,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    qemu spice-gtk virglrenderer virtviewer virt-manager
+    qemu spice-gtk virglrenderer virt-viewer virt-manager
   ];
 }
