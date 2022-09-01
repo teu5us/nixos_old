@@ -40,6 +40,9 @@ inputs.nixpkgs.lib.nixosSystem {
 
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
+      home-manager.extraSpecialArgs = {
+        inherit inputs;
+      };
 
       environment.etc = {
         "nixos/overlays-compat/overlays.nix".source = overlays-compat;
