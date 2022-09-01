@@ -23,7 +23,7 @@
     yandex-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, kmonad, nix-store-emacs-packages, emacs-overlay, yandex-browser }:
+  outputs = inputs:
     let baseSystem = import ./base-system.nix inputs;
     in
       {
