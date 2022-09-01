@@ -20,7 +20,7 @@ rec {
   programs = {
     emacs = {
       enable = true;
-      package = pkgs.emacsGcc;
+      package = pkgs.emacsNativeComp;
       extraPackages = (epkgs:
         let requiredPackages =
               map (p: epkgs.${p})
