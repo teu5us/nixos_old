@@ -169,7 +169,7 @@
       unifont
       joypixels
       roboto-mono
-      google-fonts
+      # google-fonts
       symbola
     ];
     fontconfig = {
@@ -182,8 +182,8 @@
       antialias = true;
       includeUserConf = true;
       defaultFonts = {
-        serif = [ "Tinos" ];
-        sansSerif = [ "Arimo" ];
+        serif = [ "DejaVu Serif" ];
+        sansSerif = [ "DejaVu Sans" ];
         monospace = [ "FiraCode Nerd Font" ];
       };
     };
