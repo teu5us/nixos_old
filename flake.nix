@@ -18,9 +18,12 @@
     };
 
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+
+    yandex-browser.url = "github:Teu5us/nix-yandex-browser";
+    yandex-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, kmonad, nix-store-emacs-packages, emacs-overlay }:
+  outputs = inputs@{ self, nixpkgs, home-manager, kmonad, nix-store-emacs-packages, emacs-overlay, yandex-browser }:
     let baseSystem = import ./base-system.nix inputs;
     in
       {
@@ -28,11 +31,7 @@
           nix450s = baseSystem {
             hostname = "nix450s";
             system = "x86_64-linux";
-            modules = [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil
-                        ({config, ... }: {
-                          services.usbmuxd.enable = true;
-                        })
-                      ];
+            modules = [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil ];
           };
 
           # nix450s-startx = baseSystem "x86_64-linux"
