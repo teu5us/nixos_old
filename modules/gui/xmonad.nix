@@ -6,7 +6,7 @@
     enableContribAndExtras= true;
     config = builtins.readFile ./files/xmonad.hs;
   };
-  enviromnent.systemPackages = lib.optional
+  environment.systemPackages = lib.optional
     config.services.xserver.windowManager.xmonad.enable
     pkgs.xmobar;
 }
