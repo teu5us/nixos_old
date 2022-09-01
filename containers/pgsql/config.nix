@@ -22,4 +22,6 @@
       GRANT ALL PRIVILEGES ON DATABASE admin TO admin;
     '';
   };
+
+  system.stateVersion = "21.11";
 }
