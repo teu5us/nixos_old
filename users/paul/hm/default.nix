@@ -262,11 +262,6 @@ rec {
     enable = true;
     windowManager.command = "exwm";
     scriptPath = ".xinitrc";
-    pointerCursor = {
-      package = pkgs.numix-cursor-theme;
-      name = "Numix-Cursor-Light";
-      size = 28;
-    };
     initExtra = ''
       ${pkgs.xorg.xrdb}/bin/xrdb -merge ~/.Xresources &
       ${pkgs.feh}/bin/feh --bg-scale ~/.config/wall.jpg &
@@ -306,6 +301,15 @@ rec {
   home = rec {
     username = "paul";
     homeDirectory = "/home/${username}";
+
+    pointerCursor = {
+      package = pkgs.numix-cursor-theme;
+      name = "Numix-Cursor-Light";
+      size = 28;
+      gtk.enable = true;
+      x11.enable = true;
+      x11.defaultCursor = "left_ptr";
+    };
 
     keyboard = {
       layout = "us,ru";
