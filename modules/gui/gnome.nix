@@ -36,11 +36,7 @@
     sound-output-device-chooser
     bluetooth-quick-connect
     tray-icons-reloaded
-    unite
-    floating-dock
-    gsconnect
     proxy-switcher
-    material-shell
-    pkgs.xmobar
+    dash-to-panel
   ];
 }
