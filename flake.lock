@@ -3,7 +3,9 @@
     "emacs-overlay": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1662003342,
@@ -99,18 +101,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-/yzkX+10sJhYNIcTtZ5ObS+nh/HrJp01XLaubzbRDcU=",
-        "path": "/nix/store/ii4gb8z67b0m0cz7gci16vlcwrhhwny5-source",
-        "type": "path"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "lastModified": 1661972992,
         "narHash": "sha256-50235YW76Jnx4okogoJv/sMz+WNnqC+0DqtkV3jm2XM=",
         "owner": "NixOS",
@@ -131,7 +121,7 @@
         "home-manager": "home-manager",
         "kmonad": "kmonad",
         "nix-store-emacs-packages": "nix-store-emacs-packages",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "yandex-browser": "yandex-browser"
       }
     },
@@ -142,11 +132,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1662004619,
-        "narHash": "sha256-mqe3eCp5iMw55fXkibWcabmkeEg3E2C6XSVIHYDXt3w=",
+        "lastModified": 1662370477,
+        "narHash": "sha256-5x0RNWoDwTFidHbi+1rRsT4wfjPiaEEN/CYSj7/sY28=",
         "owner": "Teu5us",
         "repo": "nix-yandex-browser",
-        "rev": "e6999f4abd3effd5e7905ca03414e6b750a328f5",
+        "rev": "59afaed9db7adf1919ebd321e8820c6f3e42981f",
         "type": "github"
       },
       "original": {

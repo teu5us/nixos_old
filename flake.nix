@@ -17,10 +17,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    yandex-browser.url = "github:Teu5us/nix-yandex-browser";
-    yandex-browser.inputs.nixpkgs.follows = "nixpkgs";
+    yandex-browser = {
+      url = "github:Teu5us/nix-yandex-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
