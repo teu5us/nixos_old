@@ -284,8 +284,8 @@ rec {
       name = "WhiteSur-dark";
     };
     iconTheme = {
-      package = pkgs.whitesur-icon-theme;
-      name = "WhiteSur-dark";
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
     };
     gtk2.extraConfig = ''
             gtk-key-theme-name="Emacs"
