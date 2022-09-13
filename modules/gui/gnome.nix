@@ -38,5 +38,6 @@
     tray-icons-reloaded
     proxy-switcher
     dash-to-panel
+    unite
   ];
 }
