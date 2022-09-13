@@ -319,7 +319,6 @@ rec {
     };
 
     packages = with pkgs; [
-      inputs.yandex-browser.yandex-browser-stable
       anydesk
       discord
       freerdp
