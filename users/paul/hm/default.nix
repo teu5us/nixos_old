@@ -4,7 +4,9 @@ let
     # e = "emacsclient -a ''";
   };
   exwm = pkgs.writeShellScriptBin "exwm" ''
-    emacs --eval '(run-exwm)'
+    systemctl --user stop emacs.service
+    systemctl --user stop emacs.socket
+    emacs --eval '(run-exwm)' && systemctl --user start emacs.socket
   '';
   e = pkgs.writeShellScriptBin "e" ''
     case "$1" in

@@ -20,6 +20,10 @@
            export GTK_IM_MODULE=xim
            export QT_IM_MODULE=xim
            export CLUTTER_IM_MODULE=xim
+           systemctl --user stop emacs.service
+           systemctl --user stop emacs.socket
+        else
+           systemctl --user start emacs.socket
         fi
       '';
     };
