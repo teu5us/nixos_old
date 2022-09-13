@@ -23,7 +23,7 @@
     };
 
     yandex-browser = {
-      url = "github:Teu5us/nix-yandex-browser";
+      url = "github:Teu5us/nix-yandex-browser?ref=web3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
