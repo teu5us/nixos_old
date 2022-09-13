@@ -13,6 +13,7 @@ let
     esac
     $run emacsclient -a "" $@ 2>/dev/null
   '';
+  nvim = pkgs.callPackage ./nvim.nix {};
 in
 rec {
   nixpkgs.config.allowUnfree = true;
@@ -340,6 +341,7 @@ rec {
       zoom-us
       exwm
       e
+      nvim
       (pkgs.vscode-with-extensions.override {
         vscodeExtensions = (with pkgs.vscode-extensions; [
           vscodevim.vim
