@@ -36,11 +36,20 @@
           nix450s = baseSystem {
             hostname = "nix450s";
             system = "x86_64-linux";
-            modules = [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil ];
-          };
+            modules = [ ./machines/nix450s ./modules/gui/gnome.nix ./modules/yggdrasil
 
-          # nix450s-startx = baseSystem "x86_64-linux"
-          #   [ ./machines/nix450s ./modules/gui/startx.nix ./modules/yggdrasil ];
+                        ({ config, ... }: {
+                          specialisation = {
+                            startx = {
+                              inheritParentConfig = true;
+                              configuration = {
+                                imports = [ ./modules/gui/startx.nix ];
+                              };
+                            };
+                          };
+                        })
+                      ];
+          };
         };
         overlay = import ./packages;
       };
