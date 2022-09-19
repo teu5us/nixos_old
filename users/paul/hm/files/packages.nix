@@ -23,6 +23,7 @@
   "diminish"
   "dimmer"
   "dracula-theme"
+  "ef-themes"
   "el-get"
   "elisp-refs"
   "emacsmirror-mirror"
