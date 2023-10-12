@@ -18,8 +18,8 @@
     useDHCP = false;
     interfaces.enp0s25.useDHCP = false;
     interfaces.wlp3s0.useDHCP = true;
-    interfaces.enp0s25.mtu = 1492;
-    interfaces.wlp3s0.mtu = 1492;
+    # interfaces.enp0s25.mtu = 1492;
+    # interfaces.wlp3s0.mtu = 1492;
 
     # Configure network proxy if necessary
     # proxy.default = "localhost:8118";

@@ -16,7 +16,7 @@
     ../../containers/pgsql
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_18;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   fileSystems = {
     "/".options = [ "noatime" "nodiratime" "discard" ];
@@ -25,12 +25,14 @@
 
   boot.initrd.luks.devices = {
     root = {
-      device = "/dev/disk/by-uuid/9d967617-5ad2-45c4-9dc8-b4c6ca3191a6";
+      # device = "/dev/disk/by-uuid/9d967617-5ad2-45c4-9dc8-b4c6ca3191a6";
+      device = "/dev/disk/by-label/cryptroot";
       preLVM = true;
       allowDiscards = true;
     };
     home = {
-      device = "/dev/disk/by-uuid/8953056d-b75f-4907-ae30-558cbc853657";
+      # device = "/dev/disk/by-uuid/8953056d-b75f-4907-ae30-558cbc853657";
+      device = "/dev/disk/by-label/crypthome";
       preLVM = true;
       allowDiscards = true;
     };

@@ -1,5 +1,15 @@
 { config, pkgs, options, lib, ... }:
 
+let
+  exwmServiceStartList = [
+    "udiskie"
+  ];
+  exwmServiceStopList = [
+    "emacs" "emacs.socket"
+  ];
+  exwmServices = action: list: lib.concatMapStringsSep "\n"
+    (x: "systemctl --user ${action} ${x}") list;
+in
 {
   imports = [ ./xmonad.nix ];
   services.xserver = {
@@ -20,10 +30,11 @@
            export GTK_IM_MODULE=xim
            export QT_IM_MODULE=xim
            export CLUTTER_IM_MODULE=xim
-           systemctl --user stop emacs.service
-           systemctl --user stop emacs.socket
+           ${exwmServices "stop" exwmServiceStopList}
+           ${exwmServices "start" exwmServiceStartList}
         else
-           systemctl --user start emacs.socket
+           ${exwmServices "stop" exwmServiceStartList}
+           ${exwmServices "start" exwmServiceStopList}
         fi
       '';
     };

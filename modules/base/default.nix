@@ -10,6 +10,7 @@
     efi.canTouchEfiVariables = true;
   };
   boot.plymouth.enable = true;
+  boot.cleanTmpDir = true;
 
   console = {
     earlySetup = true;

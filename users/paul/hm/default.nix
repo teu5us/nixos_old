@@ -18,6 +18,7 @@ let
   nvim = pkgs.callPackage ./nvim.nix {};
 in
 rec {
+  imports = [ ../../../modules/modules/shadowsocks.nix ];
   nixpkgs.config.allowUnfree = true;
 
   programs = {
@@ -226,6 +227,8 @@ rec {
   };
 
   services = {
+    ss.enable = true;
+    ss.configFile = "${config.home.homeDirectory}/ss.json";
     emacs = {
       enable = true;
       package = config.programs.emacs.finalPackage;
@@ -322,6 +325,7 @@ rec {
 
     packages = with pkgs; [
       anydesk
+      appimage-run
       discord
       freerdp
       gnome.gnome-tweaks
@@ -330,6 +334,7 @@ rec {
       maim
       openvpn
       pandoc
+      inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.poetry
       pulsemixer
       remmina
       skypeforlinux
@@ -343,32 +348,70 @@ rec {
       exwm
       e
       nvim
-      (pkgs.vscode-with-extensions.override {
-        vscodeExtensions = (with pkgs.vscode-extensions; [
-          vscodevim.vim
-          bbenoist.nix
-          ms-python.python
-          ms-python.vscode-pylance
-          ms-toolsai.jupyter
-          justusadam.language-haskell
-          haskell.haskell
-          dracula-theme.theme-dracula
-          zhuangtongfa.material-theme
-        ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "vscode-direnv";
-            publisher = "cab404";
-            version = "1.0.0";
-            sha256 = "sha256-+nLH+T9v6TQCqKZw6HPN/ZevQ65FVm2SAo2V9RecM3Y=";
-          }
-          {
-            name = "syntax-highlighter";
-            publisher = "evgeniypeshkov";
-            version = "0.5.0";
-            sha256 = "sha256-2XUuI90rVnC8pRUgAOPw3wHa3GcnuGIr2U/qTCn3dKA=";
-          }
-        ];
-      })
+      vscode-fhs
+      # (pkgs.vscode-with-extensions.override {
+      #   vscodeExtensions = (with pkgs.vscode-extensions; [
+      #     vscodevim.vim
+      #     bbenoist.nix
+      #     ms-python.python
+      #     ms-python.vscode-pylance
+      #     ms-toolsai.jupyter
+      #     justusadam.language-haskell
+      #     haskell.haskell
+      #     dracula-theme.theme-dracula
+      #     zhuangtongfa.material-theme
+      #     ms-vscode-remote.remote-ssh
+      #   ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      #     {
+      #       name = "vscode-direnv";
+      #       publisher = "cab404";
+      #       version = "1.0.0";
+      #       sha256 = "sha256-+nLH+T9v6TQCqKZw6HPN/ZevQ65FVm2SAo2V9RecM3Y=";
+      #     }
+      #     {
+      #       name = "syntax-highlighter";
+      #       publisher = "evgeniypeshkov";
+      #       version = "0.5.0";
+      #       sha256 = "sha256-2XUuI90rVnC8pRUgAOPw3wHa3GcnuGIr2U/qTCn3dKA=";
+      #     }
+      #     {
+      #       name = "vscode-javascript-repl";
+      #       publisher = "achil";
+      #       version = "0.7.3";
+      #       sha256 = "sha256-1hwiQPKdZdzTD1VfSiV06IKIat7YdYRC+Fhq0cLs0aA=";
+      #     }
+      #     {
+      #       name = "color-highlight";
+      #       publisher = "naumovs";
+      #       version = "2.5.0";
+      #       sha256 = "sha256-dYMDV84LEGXUjt/fbsSy3BVM5SsBHcPaDDll8KjPIWY=";
+      #     }
+      #     {
+      #       name = "es7-react-js-snippets";
+      #       publisher = "rodrigovallades";
+      #       version = "1.9.3";
+      #       sha256 = "sha256-bEYzrfFUIjaY15VenUsvT5Qr1BqNBUvzyYXi4+GiOKM=";
+      #     }
+      #     {
+      #       name = "JavaScriptSnippets";
+      #       publisher = "xabikos";
+      #       version = "1.8.0";
+      #       sha256 = "sha256-ht6Wm1X7zien+fjMv864qP+Oz4M6X6f2RXjrThURr6c=";
+      #     }
+      #     {
+      #       name = "ts-extension-pack";
+      #       publisher = "loiane";
+      #       version = "0.3.0";
+      #       sha256 = "sha256-W1/S2b0J0ptweVd18DxH9B+13Ca4zwfKRE8F+OJ5J2w=";
+      #     }
+      #     {
+      #       name = "typescript-explorer";
+      #       publisher = "mxsdev";
+      #       version = "0.3.3";
+      #       sha256 = "sha256-UqLx9+Se7tdRaZ2DquOrE1H8II2wa6ZfeGT0KXBiTA4=";
+      #     }
+      #   ];
+      # })
     ]
     ++ lib.optionals (xsession.windowManager.command == "exwm") [
       gnome.sushi

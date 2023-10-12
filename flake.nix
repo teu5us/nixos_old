@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
@@ -22,10 +23,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    yandex-browser = {
-      url = "github:Teu5us/nix-yandex-browser?ref=web3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # yandex-browser = {
+    #   url = "github:Teu5us/nix-yandex-browser";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = inputs:
@@ -46,6 +47,9 @@
                                 imports = [ ./modules/gui/startx.nix ];
                               };
                             };
+                          };
+                          networking.bridges.br0 = {
+                            interfaces = [ "enp0s25" ];
                           };
                         })
                       ];

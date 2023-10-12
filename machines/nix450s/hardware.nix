@@ -14,6 +14,7 @@
   };
 
   hardware = {
+    ksm.enable = true;
     bluetooth = {
       enable = true;
       package = pkgs.bluezFull;
@@ -81,6 +82,11 @@
 
   services.thermald.enable = true;
   services.thinkfan.enable = true;
+  services.power-profiles-daemon.enable = false;
+  services.tlp.enable = true;
+  services.tlp.settings = {
+    SATA_LINKPWR_ON_BAT = "min_power";
+  };
 
   services.undervolt = {
     enable = true;
@@ -91,19 +97,19 @@
   };
 
   services.cron = {
+      # "@reboot root echo 80 > /sys/class/power_supply/BAT0/charge_start_threshold"
+      # "@reboot root echo 85 > /sys/class/power_supply/BAT0/charge_stop_threshold"
+      # "@reboot root echo 80 > /sys/class/power_supply/BAT1/charge_start_threshold"
+      # "@reboot root echo 85 > /sys/class/power_supply/BAT1/charge_stop_threshold"
     systemCronJobs = [
-      "@reboot root echo 80 > /sys/class/power_supply/BAT0/charge_start_threshold"
-      "@reboot root echo 85 > /sys/class/power_supply/BAT0/charge_stop_threshold"
-      "@reboot root echo 80 > /sys/class/power_supply/BAT1/charge_start_threshold"
-      "@reboot root echo 85 > /sys/class/power_supply/BAT1/charge_stop_threshold"
       "@reboot root echo powersave > /sys/module/pcie_aspm/parameters/policy"
     ];
   };
 
   powerManagement = {
     enable = true;
-    scsiLinkPolicy = "min_power";
-    powertop.enable = true;
+    # scsiLinkPolicy = "min_power";
+    # powertop.enable = true;
     cpuFreqGovernor = "schedutil";
   };
 

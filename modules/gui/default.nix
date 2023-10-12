@@ -1,7 +1,7 @@
 { config, pkgs, options, lib, inputs, ... }:
 
 {
-  imports = [ inputs.yandex-browser.nixosModule ];
+  # imports = [ inputs.yandex-browser.nixosModules.system ];
 
   services = {
     xserver = {
@@ -205,46 +205,50 @@
       "fhcgjolkccmbidfldomjliifgaodjagh" # cookieautodelete
       "gphhapmejobijbbhgpjhcjognlahblep" # gnome extensions
       "aleakchihdccplidncghkekgioiakgal" # h264ify
+      "fmkadmapgofadopljbjfkapdkoienihi" # react devtools
+      "lmhkpmbekcpmknklioeibfkpmmfibljd" # redux devtools
+      "ndlbedplllcgconngcnfmkadhokfaaln" # graphql network inspector
+      "dpjamkmjmigaoobjbekmfgabipmfilij" # empty new tab page
     ];
   };
 
-  programs.yandex-browser = {
-    enable = true;
-    package = "stable";
-    extensions = config.programs.chromium.extensions;
-    extensionInstallBlocklist = [
-      "imjepfoebignfgmogbbghpbkbcimgfpd" # disable buggy in beta
-    ];
-    homepageLocation = "https://ya.ru";
-    extraOpts = {
-      "NewTabPageLocation" = "https://ya.ru";
-      "HardwareAccelerationModeEnabled" = true;
-      "DefaultBrowserSettingEnabled" = false;
-      "DeveloperToolsAvailability" = 0;
-      "CrashesReporting" = false;
-      "StatisticsReporting" = false;
-      "DistrStatisticsReporting" = false;
-      "UpdateAllowed" = false;
-      "ImportExtensions" = false;
-      "BackgroundModeEnabled" = false;
-      "PasswordManagerEnabled" = false;
-      "TranslateEnabled" = false;
-      "WordTranslatorDisabled" = true;
-      "YandexCloudLanguageDetectEnabled" = false;
-      "CloudDocumentsDisabled" = true;
-      "DefaultGeolocationSetting" = 1;
-      "NtpAdsDisabled" = true;
-      "NtpContentDisabled" = true;
-      "SyncDisabled" = true;
-      "PromotionalTabsEnabled" = false;
-      "AdsSettingForIntrusiveAdsSites" = 2;
-      "AutoplayAllowed" = false;
-      "SideSearchEnabled" = true;
-      "NTPCardsVisible" = false;
-      "NTPMiddleSlotAnnouncementVisible" = false;
-      "NTPCustomBackgroundEnabled" = "#ffffff";
-    };
-  };
+  # programs.yandex-browser = {
+  #   enable = true;
+  #   package = "stable";
+  #   extensions = config.programs.chromium.extensions;
+  #   extensionInstallBlocklist = [
+  #     "imjepfoebignfgmogbbghpbkbcimgfpd" # disable buggy in beta
+  #   ];
+  #   homepageLocation = "https://ya.ru";
+  #   extraOpts = {
+  #     "NewTabPageLocation" = "https://ya.ru";
+  #     "HardwareAccelerationModeEnabled" = true;
+  #     "DefaultBrowserSettingEnabled" = false;
+  #     "DeveloperToolsAvailability" = 0;
+  #     "CrashesReporting" = false;
+  #     "StatisticsReporting" = false;
+  #     "DistrStatisticsReporting" = false;
+  #     "UpdateAllowed" = false;
+  #     "ImportExtensions" = false;
+  #     "BackgroundModeEnabled" = false;
+  #     "PasswordManagerEnabled" = false;
+  #     "TranslateEnabled" = false;
+  #     "WordTranslatorDisabled" = true;
+  #     "YandexCloudLanguageDetectEnabled" = false;
+  #     "CloudDocumentsDisabled" = true;
+  #     "DefaultGeolocationSetting" = 1;
+  #     "NtpAdsDisabled" = true;
+  #     "NtpContentDisabled" = true;
+  #     "SyncDisabled" = true;
+  #     "PromotionalTabsEnabled" = false;
+  #     "AdsSettingForIntrusiveAdsSites" = 2;
+  #     "AutoplayAllowed" = false;
+  #     "SideSearchEnabled" = true;
+  #     "NTPCardsVisible" = false;
+  #     "NTPMiddleSlotAnnouncementVisible" = false;
+  #     "NTPCustomBackgroundEnabled" = "#ffffff";
+  #   };
+  # };
 
   environment.systemPackages = with pkgs; [
     xorg.setxkbmap
